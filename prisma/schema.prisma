@@ -27,6 +27,8 @@ model Income {
   amount            Float
   frequency         String
   nextExpectedDate  DateTime?
+  hourlyHours       Float?
+  hourlyPaySchedule String?
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
 

@@ -1,6 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 import { incomeSchema } from "@/lib/validators/income";
-import { createIncome } from "@/services/income/income.service";
+import { createIncome, getIncomes } from "@/services/income/income.service";
+
+/* Handles GET requests for retrieving all income records */
+export async function GET() {
+  try {
+    const incomes = await getIncomes();
+
+    return NextResponse.json(
+      {
+        success: true,
+        data: incomes,
+      },
+      { status: 200 },
+    );
+  } catch (error: unknown) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Failed to retrieve income records.",
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    );
+  }
+}
 
 /* Handles POST requests for creating a new income source. */
 export async function POST(request: NextRequest) {
@@ -8,8 +32,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     const parsedData = incomeSchema.safeParse({
-      ...body,
+      sourceName: body.sourceName,
       amount: Number(body.amount),
+      frequency: body.frequency,
+      nextExpectedDate: body.nextExpectedDate || undefined,
+      hourlyHours:
+        body.hourlyHours !== undefined && body.hourlyHours !== ""
+          ? Number(body.hourlyHours)
+          : undefined,
+      hourlyPaySchedule: body.hourlyPaySchedule || undefined,
     });
 
     if (!parsedData.success) {
@@ -22,10 +53,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    /* Placeholder user id until Authentication is added. */
-    const userId = "demo-user-id";
-
-    const income = await createIncome(userId, parsedData.data);
+    const income = await createIncome(parsedData.data);
 
     return NextResponse.json(
       {
@@ -34,7 +62,7 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 },
     );
-  } catch (error) {
+  } catch (error: unknown) {
     return NextResponse.json(
       {
         success: false,
