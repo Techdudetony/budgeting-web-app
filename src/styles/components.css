@@ -1,0 +1,14 @@
+/* ===============================================================================
+    Home Page Components
+   =============================================================================== */
+
+.home-title {
+    font-family: var(--font-accent);
+    font-size: var(--font-size-title);
+    font-weight: 700;
+}
+
+.home-description {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-subtitle);
+}

@@ -1,0 +1,40 @@
+/* ===============================================================================
+    Global Design Tokens
+   =============================================================================== */
+
+   :root {
+    /* Colors */
+    --color-bg-primary: #001B2E;
+    --color-bg-secondary: #294C60;
+    --color-bg-soft: #ADB6C4;
+
+    /* Text */
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #ADB6C4;
+    --color-text-dark: #001B2E;
+
+    /* Accent Colors */
+    --color-accent-primary: #FFC49B;
+    --color-accent-soft: #FFEFD3;
+
+    /* UI States */
+    --color-border: rgba(255, 255, 255, 0.1);
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+
+    /* Typography */
+    --font-size-title: 3rem;
+    --font-size-subtitle: 1.25rem;
+    --font-size-body: 1rem;
+    --font-primary: var(--font-primary);
+    --font-accent: var(--font-accent);
+    
+
+    /* Layout */
+    --max-width: 1200px;
+   }
