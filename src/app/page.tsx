@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+/* Root landing page for the budgeting app */
 export default function HomePage() {
   return (
     <main className="page">
@@ -8,6 +11,12 @@ export default function HomePage() {
           A smart budgeting platform for tracking income, expenses, bills, debt,
           savings projections, and financial scenarios.
         </p>
+
+        <div className="home-actions">
+          <Link href="/dashboard" className="home-primary-link">
+            Open Dashboard
+          </Link>
+        </div>
       </section>
     </main>
   );
